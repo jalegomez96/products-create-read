@@ -13,12 +13,28 @@ import java.util.List;
 @CrossOrigin("*")
 public class TypesController {
 
+    private List<TypeDTO> typeDTOS;
+
+    public TypesController() {
+        this.typeDTOS = new ArrayList<TypeDTO>();
+        this.typeDTOS.add(new TypeDTO(1, "Electronic"));
+        this.typeDTOS.add(new TypeDTO(2, "Food"));
+    }
+
+    @RequestMapping(value = "/types", method = RequestMethod.POST)
+    public ResponseEntity<?> createType(@RequestBody TypeDTO typeDTO) {
+        ApplicationError applicationError = new ApplicationError("400", "Error");
+        try {
+            this.typeDTOS.add(typeDTO);
+            return ResponseEntity.ok(typeDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(applicationError);
+        }
+    }
+
     @RequestMapping(value = "/types/{state}", method = RequestMethod.GET)
     public ResponseEntity<?> getAllTypes(@PathVariable("state") Boolean state) {
         if (state) {
-            List<TypeDTO> typeDTOS = new ArrayList<>();
-            typeDTOS.add(new TypeDTO(1, "Electronic"));
-            typeDTOS.add(new TypeDTO(2, "Food"));
             return ResponseEntity.ok(typeDTOS);
         } else {
             ApplicationError applicationError = new ApplicationError("400", "Error");

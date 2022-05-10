@@ -9,6 +9,21 @@ public class ProductDTO {
     private Boolean state;
     private Integer typeOfProduct;
 
+    public ProductDTO() {
+
+    }
+
+    public ProductDTO(Integer productId, String name, Integer price, Integer discount, Boolean state,
+            Integer typeOfProduct) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.discount = discount;
+        this.state = state;
+        this.typeOfProduct = typeOfProduct;
+
+    }
+
     public Integer getTypeOfProduct() {
         return typeOfProduct;
     }
@@ -57,13 +72,4 @@ public class ProductDTO {
         this.state = state;
     }
 
-    public ProductDTO(Integer productId, String name, Integer price, Integer discount, Boolean state, Integer typeOfProduct) {
-        this.productId = productId;
-        this.name = name;
-        this.price = price;
-        this.discount = discount;
-        this.state = state;
-        this.typeOfProduct = typeOfProduct;
-
-    }
 }

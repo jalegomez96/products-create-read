@@ -4,6 +4,10 @@ public class TypeDTO {
     private Integer id;
     private String name;
 
+    public TypeDTO() {
+
+    }
+
     public TypeDTO(Integer id, String name) {
         this.id = id;
         this.name = name;
